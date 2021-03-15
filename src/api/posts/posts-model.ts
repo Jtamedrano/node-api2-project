@@ -31,13 +31,13 @@ export async function findById(id: number): Promise<Post> {
     .first();
 }
 
-export async function insert(post: NewPost): Promise<Partial<Post>> {
+export async function insert(post: NewPost): Promise<{ id: number }> {
   return await db("posts")
     .insert(post, "id")
     .then((ids) => ({ id: ids[0] }));
 }
 
-export async function update(id: number, post: Partial<Post>): Promise<Post> {
+export async function update(id: number, post: Partial<Post>) {
   return await db("posts").where("id", Number(id)).update(post);
 }
 

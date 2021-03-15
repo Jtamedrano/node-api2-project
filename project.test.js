@@ -3,7 +3,6 @@ const server = require("./api/server");
 const db = require("./data/db-config");
 
 beforeAll(async () => {
-  console.log("before");
   await db.migrate.rollback();
   await db.migrate.latest();
 });

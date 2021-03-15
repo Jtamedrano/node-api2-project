@@ -15,4 +15,4 @@ server.use(cors());
 server.use(bodyParser.json());
 server.use("/api", posts);
 
-export default server;
+export = server;
