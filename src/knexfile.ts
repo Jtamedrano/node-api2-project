@@ -1,4 +1,3 @@
-"use strict";
 const sharedConfig = {
   client: "sqlite3",
   useNullAsDefault: true,
@@ -9,17 +8,18 @@ const sharedConfig = {
     directory: "./data/seeds",
   },
   pool: {
-    afterCreate: (conn, done) => {
+    afterCreate: (conn: any, done: any) => {
       conn.run("PRAGMA foreign_keys = ON", done);
     },
   },
 };
-module.exports = {
-  development: Object.assign(Object.assign({}, sharedConfig), {
+export = {
+  development: {
+    ...sharedConfig,
     connection: { filename: "./data/lambda.db3" },
-  }),
-  testing: Object.assign(Object.assign({}, sharedConfig), {
+  },
+  testing: {
+    ...sharedConfig,
     connection: { filename: "./data/testing.db3" },
-  }),
+  },
 };
-//# sourceMappingURL=knexfile.js.map
